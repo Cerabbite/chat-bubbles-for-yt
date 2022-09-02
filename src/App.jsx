@@ -34,12 +34,15 @@ function App() {
         setKeyboard(false);
       } else if (event.key == '1' && event.altKey) {
         setKeyboard('typewriter');
+      } else if (event.key == '2' && event.altKey) {
+        setKeyboard('raspberry');
       }
-      console.log(event.key)
       if (keyboard && !nonAudioKeys.includes(event.key)) {
         if (event.key == "Enter"){
           typeSound(keyboard, 'enter')
-        } else {
+        } else if (event.key == " ") {
+          typeSound(keyboard, 'space')
+        }else {
           typeSound(keyboard, '')
         }
       }
