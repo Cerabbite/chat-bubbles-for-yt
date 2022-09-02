@@ -1,14 +1,17 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import './App.css'
 import Chat from './chat'
 import Bubble from './bubble'
 import BubbleInput from './bubble-input'
 import useMessages from './use-messages'
 import { motion, AnimatePresence } from 'framer-motion'
+import typeSound from './typeSound'
 
 function App() {
   const [messages, addMessage] = useMessages([])
   const [newMessage, setNewMessage] = useState('')
+  const [keyboard, setKeyboard] = useState(false)
+  const nonAudioKeys = ['Shift', 'Control', 'Capslock', 'Alt', 'AltGraph']
 
   const handleSubmit = useCallback(
     bubbleHeight => {
@@ -23,6 +26,29 @@ function App() {
     },
     [newMessage, messages]
   )
+
+  useEffect(() => {
+    function onKeydown(event) {
+      if (event.key === '0' && event.altKey) {
+        // Open/Close settings menu
+        setKeyboard(false);
+      } else if (event.key == '1' && event.altKey) {
+        setKeyboard('typewriter');
+      }
+      console.log(event.key)
+      if (keyboard && !nonAudioKeys.includes(event.key)) {
+        if (event.key == "Enter"){
+          typeSound(keyboard, 'enter')
+        } else {
+          typeSound(keyboard, '')
+        }
+      }
+    }
+    window.addEventListener('keydown', onKeydown)
+    return () => {
+      window.removeEventListener('keydown', onKeydown)
+    }
+  }, [keyboard])
 
   const lastMessage = messages[messages.length - 1]
   const dy = lastMessage ? lastMessage.height : 0

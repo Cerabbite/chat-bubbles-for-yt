@@ -1,0 +1,1 @@
+The first 10 key strokes have been created into their own wav file
