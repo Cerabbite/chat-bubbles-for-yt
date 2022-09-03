@@ -36,7 +36,10 @@ function App() {
         setKeyboard('typewriter');
       } else if (event.key == '2' && event.altKey) {
         setKeyboard('raspberry');
+      } else if (event.key == '3' && event.altKey) {
+        setKeyboard('macbook pro')
       }
+
       if (keyboard && !nonAudioKeys.includes(event.key)) {
         if (event.key == "Enter"){
           typeSound(keyboard, 'enter')
