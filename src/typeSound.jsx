@@ -22,6 +22,12 @@ import raspberryKey7 from "./audio/Raspberry/key7.wav"
 import raspberryKey8 from "./audio/Raspberry/key8.wav"
 import raspberryKey9 from "./audio/Raspberry/key9.wav"
 import raspberryKey10 from "./audio/Raspberry/key10.wav"
+import macbookproKeyEnter from "./audio/Macbook pro/keyEnter.wav"
+import macbookproKeySpace from "./audio/Macbook pro/keySpace.wav"
+import macbookproKey1 from "./audio/Macbook pro/key1.wav"
+import macbookproKey2 from "./audio/Macbook pro/key2.wav"
+import macbookproKey3 from "./audio/Macbook pro/key3.wav"
+import macbookproKey4 from "./audio/Macbook pro/key4.wav"
 
 function typeSound(keyboard, keyType) {
     var keys = [];
@@ -39,6 +45,10 @@ function typeSound(keyboard, keyType) {
         // raspberryKey9, raspberryKey8, raspberryKey7, raspberryKeySpace, raspberryKey6, raspberryKey4, raspberryKey1 have been removed from the code because they cause a big sort of pop when they finish playing maybe because they are to short?
         enterkey = raspberryKeyEnter
         spacekey = raspberryKeyEnter
+    } else if (keyboard == "macbook pro") {
+        keys = [macbookproKey1, macbookproKey2, macbookproKey3, macbookproKey4]
+        enterkey = macbookproKeyEnter
+        spacekey = macbookproKeySpace
     }
 
     var key = keys[Math.floor(Math.random()*keys.length)];
